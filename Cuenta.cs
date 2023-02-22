@@ -122,4 +122,53 @@ namespace Ejercicio5
         }
 
     }
+
+    internal class Corriente : Cuenta
+    {
+        private double sobregiro;
+
+        public Corriente(double saldo, double tasaAnual) : base(saldo, tasaAnual)
+        {
+            sobregiro = 0;
+        }
+
+        public new double Saldo
+        {
+            get => saldo;
+            private set
+            {
+                saldo = value;
+                if (saldo < 0)
+                {
+                    sobregiro += -saldo;
+                    saldo = 0;
+                }
+            }
+        }
+
+        public new void Ingresar(double cant)
+        {
+            sobregiro -= cant;
+            if (sobregiro < 0)
+            {
+                saldo += -sobregiro;
+                sobregiro = 0;
+            }
+            ni++;
+        }
+        public new void Retirar(double cant)
+        {
+            if (sobregiro > 0)
+            {
+                sobregiro += cant;
+            }
+            else
+            {
+                Saldo -= cant;
+            }
+            nr++;
+        }
+
+
+    }
 }
