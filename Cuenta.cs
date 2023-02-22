@@ -169,6 +169,10 @@ namespace Ejercicio5
             nr++;
         }
 
-
+        public override string ToString()
+        {
+            return "Su saldo es " + saldo + ", comision de " + comisionMensual +
+                ", numero de transacciones " + (ni + nr) + " sobregiro " + sobregiro;
+        }
     }
 }

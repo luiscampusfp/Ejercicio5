@@ -45,15 +45,63 @@ queda como sobregiro.
 transacciones realizadas (suma de cantidad de consignaciones y retiros) y el valor de sobregiro.
 Realizar un método main que implemente un objeto Cuenta de ahorros y llame a los métodos correspondientes
              */
-            Cuenta c;
+
+            List<Cuenta> cuentas = new List<Cuenta>();
+            string r;
             do
             {
-                Console.WriteLine("Introduzca el saldo de su nueva cuenta:");
-                double saldo = double.Parse(Console.ReadLine());
-                Console.WriteLine("Introduzca el interes anual:");
-                double interes = double.Parse(Console.ReadLine());
-                c = new Cuenta(saldo, interes);
-            } while (!c.correcto);
+                Console.Clear();
+                Console.WriteLine("Opciones del programa:\n" +
+                    "1- Crear Cuenta\n" +
+                    "2- Eliminar Cuenta\n" +
+                    "3- Operar Cuenta\n" +
+                    "4- Salir");
+                r = Console.ReadLine();
+                switch (r)
+                {
+                    case "1":
+                        Console.WriteLine("Defina el tipo de cuenta que desea crear (normal, ahorro, corriente):");
+                        string tipo = Console.ReadLine();
+                        Console.WriteLine("Introduzca el saldo de su nueva cuenta:");
+                        double saldo = double.Parse(Console.ReadLine());
+                        Console.WriteLine("Introduzca el interes anual:");
+                        double interes = double.Parse(Console.ReadLine());
+                        if (tipo == "normal")
+                            cuentas.Add(new Cuenta(saldo, interes));
+                        else if (tipo == "ahorro")
+                            cuentas.Add(new Ahorro(saldo, interes));
+                        else if (tipo == "corriente")
+                            cuentas.Add(new Corriente(saldo, interes));
+                        else
+                            Console.WriteLine("No se ha creado la cuenta, porque no se reconoce el tipo");
+                        Console.ReadLine();
+                        break;
+                    case "2":
+                        Console.WriteLine("Introduzca la posicion de la cuenta que deceas eliminar:");
+                        int pos = int.Parse(Console.ReadLine());
+                        cuentas.RemoveAt(pos);
+                        Console.ReadLine();
+                        break;
+                    case "3":
+                        Console.WriteLine("Introduzca la posicion de la cuenta que deceas eliminar:");
+                        int pos2 = int.Parse(Console.ReadLine());
+                        MenuCuenta(cuentas[pos2]);
+                        break;
+                    case "4":
+                        Console.WriteLine("Saliendo de la programa");
+                        Console.ReadLine();
+                        break;
+                    default:
+                        Console.WriteLine("Seleccion incorrecta");
+                        Console.ReadLine();
+                        break;
+                }
+
+            } while (r != "4");
+        }
+
+        public static void MenuCuenta(Cuenta c)
+        {
             string r;
             do
             {
@@ -83,23 +131,16 @@ Realizar un método main que implemente un objeto Cuenta de ahorros y llame a lo
                         Console.ReadLine();
                         break;
                     case "4":
-                        Console.WriteLine("Saliendo de la aplicacion");
+                        Console.WriteLine("Saliendo de la cuenta");
+                        Console.ReadLine();
                         break;
                     default:
                         Console.WriteLine("Seleccion incorrecta");
+                        Console.ReadLine();
                         break;
                 }
 
             } while (r != "4");
-
-
-            Cuenta a = new Ahorro(500, 12);
-            a.ExtractoMensual();
-
-
-
-            Console.ReadLine();
         }
-        
     }
 }
