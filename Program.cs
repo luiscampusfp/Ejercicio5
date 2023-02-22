@@ -83,7 +83,7 @@ Realizar un método main que implemente un objeto Cuenta de ahorros y llame a lo
                         Console.ReadLine();
                         break;
                     case "3":
-                        Console.WriteLine("Introduzca la posicion de la cuenta que deceas eliminar:");
+                        Console.WriteLine("Introduzca la posicion de la cuenta que deceas gestionar:");
                         int pos2 = int.Parse(Console.ReadLine());
                         MenuCuenta(cuentas[pos2]);
                         break;
