@@ -123,7 +123,7 @@ namespace Ejercicio5
 
     }
 
-    internal class Corriente : Cuenta
+    public class Corriente : Cuenta
     {
         private double sobregiro;
 
